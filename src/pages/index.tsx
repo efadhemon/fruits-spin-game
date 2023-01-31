@@ -1,4 +1,5 @@
 import TopBar from "@components/TopBar";
+import WheelSpinner from "@components/WheelSpinner";
 import Head from "next/head";
 
 export default function Home() {
@@ -13,6 +14,7 @@ export default function Home() {
       <main className="game_container">
         <div className="game_wrapper">
           <TopBar />
+          <WheelSpinner />
         </div>
       </main>
     </>

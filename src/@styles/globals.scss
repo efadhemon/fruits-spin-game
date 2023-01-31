@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.game_container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(/images/main-bg.png);
+  .game_wrapper {
+    height: 100vh;
+    max-width: 500px;
+    width: 500px;
+  }
+}
+
+.wheel_spinner_main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  .wheel_wrapper {
+    position: relative;
+    height: 12rem;
+    width: 12rem;
+    .wheel_img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .spinner_wheel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 50%;
+
+      .fruit_box {
+        --rotation: #{1 * 60deg};
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        transform: rotate(var(--rotation));
+        padding: 2.5rem;
+        z-index: -1;
+
+        $i: 1;
+        @while $i<=6 {
+          &:nth-child(#{$i}) {
+            @if $i < 4 {
+              --rotation: #{$i * 60deg};
+              .fruit_box_holder {
+                width: 2rem;
+                transform: rotate(#{$i * -240deg});
+              }
+            }
+            @if $i > 3 {
+              --rotation: #{$i * 60deg};
+              .fruit_box_holder {
+                width: 2rem;
+                transform: rotate(#{$i * -60deg});
+              }
+            }
+          }
+
+          $i: $i + 1;
+        }
+      }
+    }
+  }
+}
